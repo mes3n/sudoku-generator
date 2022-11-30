@@ -1,41 +1,7 @@
-board = [
-
-    [9, 0, 0,   0, 1, 0,    0, 0, 6],
-    [2, 0, 0,   5, 0, 6,    3, 0, 0],
-    [0, 5, 0,   0, 4, 0,    0, 0, 0],
-
-    [0, 2, 0,   7, 0, 9,    0, 0, 4],
-    [3, 0, 0,   0, 0, 0,    0, 8, 0],
-    [0, 0, 0,   0, 5, 0,    0, 0, 0],  #     [0, 0, 0,   0, 5, 0,    0, 0, 0],
-
-    [0, 0, 0,   0, 0, 1,    0, 0, 0],
-    [0, 7, 0,   6, 0, 2,    0, 0, 9],
-    [0, 0, 9,   0, 0, 0,    4, 0, 0],
-
-]
-
-board = [
-
-    [0, 2, 6,   3, 5, 0,    0, 0, 1],
-    [8, 0, 1,   0, 6, 0,    0, 0, 0],
-    [0, 0, 0,   8, 1, 9,    5, 0, 6],
-
-    [3, 0, 2,   0, 0, 0,    1, 0, 5],
-    [5, 0, 0,   9, 0, 0,    0, 0, 0],
-    [0, 9, 0,   2, 4, 0,    8, 6, 3],  #     [0, 0, 0,   0, 5, 0,    0, 0, 0],
-
-    [0, 0, 5,   4, 9, 7,    0, 0, 0],
-    [0, 3, 4,   1, 2, 0,    9, 5, 0],
-    [0, 0, 0,   5, 8, 0,    0, 7, 0],
-
-]
-
-
 class Solver:
     def __init__(self, board):
         self.board = board
         self.solutions = 0
-
 
     def solve(self):
         for y, row in enumerate(self.board):
@@ -53,12 +19,10 @@ class Solver:
         self.solutions += 1
         return False if self.solutions < 100 else True  # stop counting after 100 solutions
 
-
     def count_solutions(self):
         self.solve()
         return self.solutions
-
-
+        
     def validate(self, num, x, y):
         if num in self.board[y]:
             return False
@@ -75,9 +39,8 @@ class Solver:
 
         return True
 
-
-    def display(self):
-        for y, row in enumerate(board):
+    def display_board(self):
+        for y, row in enumerate(self.board):
             if y % 3 == 0 and y != 0:
                 print('- - - + - - - + - - -')
             for x, num in enumerate(row):
@@ -89,9 +52,26 @@ class Solver:
 
 
 def main():
+
+    board = [
+
+        [9, 0, 0,   0, 1, 0,    0, 0, 6],
+        [2, 0, 0,   5, 0, 6,    3, 0, 0],
+        [0, 5, 0,   0, 4, 0,    0, 0, 0],
+
+        [0, 2, 0,   7, 0, 9,    0, 0, 4],
+        [3, 0, 0,   0, 0, 0,    0, 8, 0],
+        [0, 0, 0,   0, 5, 0,    0, 0, 0],
+
+        [0, 0, 0,   0, 0, 1,    0, 0, 0],
+        [0, 7, 0,   6, 0, 2,    0, 0, 9],
+        [0, 0, 9,   0, 0, 0,    4, 0, 0],
+
+    ]
+
     solver = Solver(board)
     print(solver.count_solutions())
-    solver.display()
+    solver.display_board()
 
 
 if __name__ == '__main__':
