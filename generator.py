@@ -86,10 +86,9 @@ class Generator:
                 if self.count_solutions(limit=2) > 1:
                     self.board[y][x] = num
                     constants.append((x, y))
-            
-                self.display_board()
-                print(self.count_values())
-                
+
+                # self.display_board()
+
 
     def display_board(self, name=''):
         print(name)
@@ -99,7 +98,7 @@ class Generator:
             for x, num in enumerate(row):
                 if x % 3 == 0 and x != 0:
                     print('|', end=' ')
-                print(num, end=' ')
+                print(num if num != 0 else ' ', end=' ')
             print()
         print()
 
@@ -110,7 +109,7 @@ def main():
     generator.generate_solution()
     generator.display_board('solution')
 
-    generator.set_remainder(20)
+    generator.set_remainder(30)
     generator.display_board('problem')
 
 
