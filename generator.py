@@ -87,30 +87,37 @@ class Generator:
                     self.board[y][x] = num
                     constants.append((x, y))
 
-                # self.display_board()
+                self.display_board()
 
 
     def display_board(self, name=''):
         print(name)
+        print('┏━━┯━━┯━━┳━━┯━━┯━━┳━━┯━━┯━━┓')
         for y, row in enumerate(self.board):
             if y % 3 == 0 and y != 0:
-                print('- - - + - - - + - - -')
+                print('┣━━┿━━┿━━╋━━┿━━┿━━╋━━┿━━┿━━┫')
+            elif y != 0:
+                print('┠──┼──┼──╂──┼──┼──╂──┼──┼──┨')
             for x, num in enumerate(row):
-                if x % 3 == 0 and x != 0:
-                    print('|', end=' ')
-                print(num if num != 0 else ' ', end=' ')
-            print()
-        print()
+                if x % 3 == 0:
+                    print('┃', end=' ')
+                else:
+                    print('│', end=' ')
+                print(str(num) if num != 0 else ' ', end='')
+            print('┃')
+        print('┗━━┷━━┷━━┻━━┷━━┷━━┻━━┷━━┷━━┛')
 
 
 def main():
+
+
     generator = Generator()
 
     generator.generate_solution()
-    generator.display_board('solution')
+    generator.display_board('**solution**')
 
     generator.set_remainder(30)
-    generator.display_board('problem')
+    generator.display_board()
 
 
 if __name__ == '__main__':
